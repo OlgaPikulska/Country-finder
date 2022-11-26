@@ -7,12 +7,12 @@ const countryList = document.querySelector(".country-list")
 const countryInfo = document.querySelector(".country-info")
 
 searchBox.addEventListener("input", () => {
-    fetchCountries(name).then((country) => renderCountryList(countries)).catch((error) => console.log(error));
+    fetchCountries(searchBox.value).then((country) => renderCountryList(countries)).catch((error) => console.log(error));
 
 })
 
 function fetchCountries(name) {
-    return fetch("https://restcountries.com/v2/{service}?fields={field},{field},{field}").then(
+    return fetch(`https://restcountries.com/v3.1/name/${name}`).then(
           (response) => {
             if (!response.ok) {
               throw new Error(response.status);
