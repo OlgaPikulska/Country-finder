@@ -9,6 +9,8 @@ const searchBox = document.querySelector("#search-box");
 const countryList = document.querySelector(".country-list")
 const countryInfo = document.querySelector(".country-info")
 
+//searchBox.setAttribute("pattern","[a-zA-Z]+")
+//searchBox.setAttribute("title","Please enter only letters")
 searchBox.addEventListener("input", _debounce(inputListener,DEBOUNCE_DELAY))
 
 function inputListener(event) {
