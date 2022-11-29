@@ -49,6 +49,11 @@ body {
   font-weight: 600;
 }
 
+.nameMore:focus,
+.nameMore:hover{
+  color: aqua;
+}
+
 .name__img {
   margin-right: 15px;
   width: 2rem;
