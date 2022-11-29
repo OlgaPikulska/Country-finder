@@ -9,8 +9,6 @@ const searchBox = document.querySelector("#search-box");
 const countryList = document.querySelector(".country-list")
 const countryInfo = document.querySelector(".country-info")
 
-//searchBox.setAttribute("pattern","^[a-zA-Z]+$")
-//searchBox.setAttribute("title","Please enter only letters. Do not use any numbers or special characters.")
 searchBox.addEventListener("input", _debounce(inputListener,DEBOUNCE_DELAY))
 
 function inputListener(event) {
@@ -20,20 +18,39 @@ function inputListener(event) {
   if (searchValue.length > 0) {
     if (!/^[a-zA-Z]+$/.test(searchValue)) {
       Notify.failure("Please enter only letters. Do not use any numbers or special characters.")
-    } else {fetchCountries(searchValue)
-    //fetchCountries(searchValue)
-    .then((searchValue) => {
-      renderCountryList(searchValue)
-    })
+    } else {
+      fetchCountries(searchValue)
+      .then((searchValue) => {
+        renderCountryList(searchValue)
+
+        document.addEventListener("click", (event) => {
+          const target = event.target.closest(".country-list__item");
+          if (target) {
+            const name = event.target.closest("#countryName").innerHTML
+            const foundedName = searchValue.find(exact => exact.name === name)
+            getMoreInfo(foundedName)
+
+            const backBtn = document.createElement("button")
+            backBtn.textContent = "Go back"
+            backBtn.classList.add("back-btn")
+            countryList.prepend(backBtn);
+              backBtn.addEventListener("click", () => {
+              countryList.innerHTML = null;
+              countryInfo.innerHTML = null;
+              renderCountryList(searchValue)
+              })
+          }
+        })
+      })
       .catch((error) => {
         console.log(error);
         //if (!/^[a-zA-Z]+$/.test(searchValue)) {
           //console.log(!/^[a-zA-Z]+$/.test(searchValue));
           //Notify.failure("Please enter only letters. Do not use any numbers or special characters.")
        // } else {
-      Notify.failure("Oops, there is no country with that name")    
-    });
-  }
+        Notify.failure("Oops, there is no country with that name")    
+      });
+    }
   }
 }
 
@@ -48,8 +65,8 @@ function renderCountryList(countries) {
     countryList.innerHTML = null;
     countryInfo.innerHTML = null;
     const markup = countries.map((country) => {
-      console.log(country)
-        return `<li class="name nameMore"><img src=${country.flags.svg} class="name__img"><p>${country.name}</p></li>`
+      const markupText = `<li class="name country-list__item"><img src=${country.flags.svg} class="name__img"><p id="countryName">${country.name}</p></li>`
+      return markupText
     }).join(" ");
     const markupReplaced = markup.replaceAll("undefined", "")
     countryList.innerHTML = markupReplaced;
@@ -68,9 +85,19 @@ function renderCountryList(countries) {
     const markupReplaced = markup.replaceAll("undefined", "")
     countryInfo.innerHTML = markupReplaced;
   }
-
 } 
 
 
+function getMoreInfo(country) {
+  countryList.innerHTML = null;
+  const parsedLanguages = country.languages.map(lang => lang.name).join(", ")
+  const markup = `<ul class="country-info__list">
+      <li class="name"><img src="${country.flags.svg}" class="name__img" alt="Flag of ${country.name}"><p class="country-info__name"><b>${country.name}</b></p></li>
+      <li class="country-info__item"><b>Capital:</b> ${country.capital}</li>
+      <li class="country-info__item"><b>Population:</b> ${country.population}</li>
+      <li class="country-info__item"><b>Languages:</b> ${parsedLanguages}</li></ul>`
+      const markupReplaced = markup.replaceAll("undefined", "")
+  return countryInfo.innerHTML = markupReplaced;
+}
 
-// Ad 2 dodatkowe: Początkowo próbowałam obsłużyć używanie samych liter jako warunek w catchu, ale doczytałam sugestię, żeby całkowicie tego fetcha nie wykonywać - rozumiem, że to kwestia szybkości i wydajności, tak? Teraz fetch się nie wykonuje, ale czy podwójny if jest poprawny, czy może da się to lepiej zrobić? 
+

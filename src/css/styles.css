@@ -40,6 +40,7 @@ body {
 }
 
 .name {
+  margin-top: 20px;
   margin-bottom: 15px;
   list-style: none;
   display: flex;
@@ -49,9 +50,14 @@ body {
   font-weight: 600;
 }
 
-.nameMore:focus,
-.nameMore:hover{
-  color: aqua;
+
+.country-list__item:focus,
+.country-list__item:hover,
+.back-btn:focus, 
+.back-btn:hover {
+  transform: scale(1.01);
+  color: rgb(67, 130, 212);
+  cursor: pointer;
 }
 
 .name__img {
@@ -70,4 +76,12 @@ body {
 
 .country-info__item {
   margin-bottom: 1rem;
+}
+
+.back-btn{
+  width: 100px;
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
 }
