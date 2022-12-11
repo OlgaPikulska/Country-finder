@@ -15,8 +15,7 @@ function inputListener(event) {
   countryList.innerHTML = null;
   countryInfo.innerHTML = null;
   let searchValue = event.target.value;
-  if (searchValue.length > 0) {
-    if (!/^[a-zA-Z]+$/.test(searchValue)) {
+  if (searchValue.length > 0 && !/^[a-zA-Z]+$/.test(searchValue)) {
       Notify.failure("Please enter only letters. Do not use any numbers or special characters.")
     } else {
       fetchCountries(searchValue)
@@ -44,15 +43,11 @@ function inputListener(event) {
       })
       .catch((error) => {
         console.log(error);
-        //if (!/^[a-zA-Z]+$/.test(searchValue)) {
-          //console.log(!/^[a-zA-Z]+$/.test(searchValue));
-          //Notify.failure("Please enter only letters. Do not use any numbers or special characters.")
-       // } else {
         Notify.failure("Oops, there is no country with that name")    
       });
     }
   }
-}
+
 
 
 function renderCountryList(countries) {
@@ -75,7 +70,9 @@ function renderCountryList(countries) {
 
     countryList.innerHTML = null;
     const markup = countries.map((country) => {
-      const parsedLanguages = country.languages.map(lang => lang.name).join(", ")
+      console.log(country.languages)
+      const parsedLanguages = country.languages.length === 1 ? country.languages[0].name : country.languages.map(lang => lang.name).join(', ');
+      //const parsedLanguages = country.languages.map(lang => lang.name).join(", ")
       return `<ul class="country-info__list">
       <li class="name"><img src="${country.flags.svg}" class="name__img" alt="Flag of ${country.name}"><p class="country-info__name"><b>${country.name}</b></p></li>
       <li class="country-info__item"><b>Capital:</b> ${country.capital}</li>
@@ -90,7 +87,8 @@ function renderCountryList(countries) {
 
 function getMoreInfo(country) {
   countryList.innerHTML = null;
-  const parsedLanguages = country.languages.map(lang => lang.name).join(", ")
+  const parsedLanguages = country.languages.length === 1 ? country.languages[0].name : country.languages.map(lang => lang.name).join(', ');
+  //const parsedLanguages = country.languages.map(lang => lang.name).join(", ")
   const markup = `<ul class="country-info__list">
       <li class="name"><img src="${country.flags.svg}" class="name__img" alt="Flag of ${country.name}"><p class="country-info__name"><b>${country.name}</b></p></li>
       <li class="country-info__item"><b>Capital:</b> ${country.capital}</li>
