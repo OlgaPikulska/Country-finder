@@ -9,12 +9,32 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  /* background-image: url(../images/blue_world.jpg); */
+  background-image: linear-gradient(
+      to right,
+      rgba(215, 216, 229, 0.4) 100%,
+      rgba(47, 48, 58, 0.4) 100%
+    ),
+    url(../images/blue_world.jpg);
   color: #212121;
   line-height: 1.5;
-  background-image: radial-gradient(rgb(223, 215, 215) 5%, transparent 5%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-image: radial-gradient(rgb(223, 215, 215) 5%, transparent 5%);
   background-size: 30px 30px;
-  background-repeat: repeat;
+  background-repeat: repeat; */
+}
+
+.title {
+  font-family: 'Amatic SC', cursive;
+  font-size: 94px;
+  line-height: 1.5;
 }
 
 #search-box {
@@ -22,15 +42,15 @@ body {
   padding: 8px;
   min-width: 300px;
   max-width: 320px;
-  margin: 15px 0px 16px 15px ;
+  margin: 15px 0px 16px 15px;
 }
 
 #search-box:hover,
 #search-box:focus,
 .search-box__input {
-    border: 2px solid blue;
-    outline: none;
-  }
+  border: 2px solid blue;
+  outline: none;
+}
 
 .country-list,
 .country-info {
@@ -47,13 +67,15 @@ body {
   flex-direction: row;
   align-items: center;
   font-family: 'Cantarell', sans-serif;
+  font-family: 'Lobster Two', cursive;
   font-weight: 600;
+  color: black;
+  font-size: 30px;
 }
-
 
 .country-list__item:focus,
 .country-list__item:hover,
-.back-btn:focus, 
+.back-btn:focus,
 .back-btn:hover {
   transform: scale(1.01);
   color: rgb(67, 130, 212);
@@ -78,7 +100,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.back-btn{
+.back-btn {
   width: 100px;
   height: 30px;
   margin-bottom: 10px;
