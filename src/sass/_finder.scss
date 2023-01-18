@@ -1,0 +1,202 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(
+      to right,
+      rgba(215, 216, 229, 0.4) 100%,
+      rgba(47, 48, 58, 0.4) 100%
+    ),
+    url(../images/blue_world.jpg);
+  color: #212121;
+  line-height: 1.5;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.title {
+  font-family: 'Amatic SC', cursive;
+  font-size: 44px;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 40px;
+  @media screen and (min-width: 768px) {
+    font-size: 64px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 94px;
+  }
+}
+
+.search-input {
+  font: inherit;
+  padding: 8px;
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+.search-input:hover,
+.search-input:focus {
+  border: 2px solid black;
+  outline: none;
+}
+
+.country-list,
+.country-info {
+  padding-left: 5px;
+  margin: 0px 15px;
+  height: 1rem;
+  width: 100%;
+  max-width: 450px;
+}
+
+.country-list > .name {
+  background: rgba(239, 230, 230, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.name {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: 'Cantarell', sans-serif;
+  font-family: 'Lobster Two', cursive;
+  font-weight: 600;
+  color: black;
+  font-size: 20px;
+  padding: 5px 10px 5px 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 30px;
+  }
+}
+
+.country-list__item:focus,
+.country-list__item:hover {
+  transform: scale(1.01);
+  color: white;
+  cursor: pointer;
+}
+
+.name__img {
+  margin-right: 15px;
+  width: 2rem;
+}
+
+.country-info__list {
+  margin-top: 80px;
+  padding: 15px 30px 15px 30px;
+  max-width: 450px;
+
+  background: rgba(239, 230, 230, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.country-info__name {
+  font-size: 20px;
+  @media screen and (min-width: 768px) {
+    font-size: 40px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 40px;
+  }
+}
+
+.country-info__item {
+  margin-bottom: 1rem;
+  font-size: 15px;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 20px;
+  }
+}
+
+.back-btn {
+  margin-top: 20px;
+  line-height: 50px;
+  height: 50px;
+  text-align: center;
+  max-width: 130px;
+  cursor: pointer;
+  color: black;
+  transition: all 0.3s;
+  position: relative;
+
+  font-family: 'Amatic SC', cursive;
+  font-weight: 900;
+  font-size: xx-large;
+}
+
+.back-btn span {
+  transition: all 0.3s;
+}
+.back-btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 0;
+  transition: all 0.3s;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-top-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+  transform: scale(0.1, 1);
+}
+.back-btn:hover span {
+  letter-spacing: 2px;
+}
+.back-btn:hover::before {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+.back-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  background: rgba(239, 230, 230, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.back-btn:hover::after {
+  opacity: 0;
+  transform: scale(0.1, 1);
+}

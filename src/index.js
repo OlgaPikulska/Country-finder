@@ -1,4 +1,4 @@
-import './css/styles.css';
+import './css/index.min.css';
 import _debounce from 'lodash.debounce';
 import Notiflix, { Notify } from 'notiflix';
 import fetchCountries from "./fetchCountries";
@@ -9,16 +9,16 @@ const searchBox = document.querySelector("#search-box");
 const countryList = document.querySelector(".country-list")
 const countryInfo = document.querySelector(".country-info")
 
-searchBox.addEventListener("input", _debounce(inputListener,DEBOUNCE_DELAY))
+searchBox.addEventListener("input", _debounce(inputListener, DEBOUNCE_DELAY))
 
 function inputListener(event) {
   countryList.innerHTML = null;
   countryInfo.innerHTML = null;
   let searchValue = event.target.value;
   if (searchValue.length > 0 && !/^[a-zA-Z]+$/.test(searchValue)) {
-      Notify.failure("Please enter only letters. Do not use any numbers or special characters.")
-    } else {
-      fetchCountries(searchValue)
+    Notify.failure("Please enter only letters. Do not use any numbers or special characters.")
+  } else {
+    fetchCountries(searchValue)
       .then((searchValue) => {
         renderCountryList(searchValue)
 
@@ -29,24 +29,26 @@ function inputListener(event) {
             const foundedName = searchValue.find(exact => exact.name === name)
             getMoreInfo(foundedName)
 
-            const backBtn = document.createElement("button")
-            backBtn.textContent = "Go back"
+            const backBtn = document.createElement("div")
+            const spanText = document.createElement("span")
+            spanText.textContent = "Go back"
+            backBtn.prepend(spanText)
             backBtn.classList.add("back-btn")
             countryList.prepend(backBtn);
-              backBtn.addEventListener("click", () => {
+            backBtn.addEventListener("click", () => {
               countryList.innerHTML = null;
               countryInfo.innerHTML = null;
               renderCountryList(searchValue)
-              })
+            })
           }
         })
       })
       .catch((error) => {
         console.log(error);
-        Notify.failure("Oops, there is no country with that name")    
+        Notify.failure("Oops, there is no country with that name")
       });
-    }
   }
+}
 
 
 
@@ -82,7 +84,7 @@ function renderCountryList(countries) {
     const markupReplaced = markup.replaceAll("undefined", "")
     countryInfo.innerHTML = markupReplaced;
   }
-} 
+}
 
 
 function getMoreInfo(country) {
@@ -94,7 +96,7 @@ function getMoreInfo(country) {
       <li class="country-info__item"><b>Capital:</b> ${country.capital}</li>
       <li class="country-info__item"><b>Population:</b> ${country.population}</li>
       <li class="country-info__item"><b>Languages:</b> ${parsedLanguages}</li></ul>`
-      const markupReplaced = markup.replaceAll("undefined", "")
+  const markupReplaced = markup.replaceAll("undefined", "")
   return countryInfo.innerHTML = markupReplaced;
 }
 
