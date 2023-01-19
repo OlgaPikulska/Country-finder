@@ -29,4 +29,4 @@ Project is created with:
 <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="40" height="40"/>&nbsp;
  
 ## Sources
-This website has been perfomed as a homework result of Fullstack Developer Course by GoIT. I used a parcel-project-template prepared by GoIT and add my JS, SASS and HTML files. 
+This website has been performed as a homework result of Fullstack Developer Course by GoIT. I used a parcel-project-template prepared by GoIT and add my JS, SASS and HTML files. 
