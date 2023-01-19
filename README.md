@@ -10,6 +10,7 @@ https://olgapikulska.github.io/Country-finder/
 
 ## General info
 This is a search engine for countries. Users can find out the national flag, languages, the name of the capital and  the population. I came up with the design of this page myself. 
+
 Working on this application helped me to learn about HTTP Protocol, HTTP methods and requests. In the future, I would like to add "X" in input, which will clean contents as a feature.
 	
 ## Technologies
